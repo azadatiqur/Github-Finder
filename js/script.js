@@ -11,6 +11,8 @@ searchBtn.addEventListener('click', (e)=>{
             .then(data => {
                 if(data.message == "Not Found") {
                     // Show Alert
+                    ui.showAlert("User not Found!", "alert alert-danger");
+                    //console.log("not found");
                 }
                 else {
                     // Show Profile
