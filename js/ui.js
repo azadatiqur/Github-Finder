@@ -28,6 +28,8 @@ class UI {
       </div>
         `;
     }
+
+    clearProfile() {
+        this.profile.innerHTML = "";
+    }
 }
-/*
-*/

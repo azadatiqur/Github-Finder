@@ -20,5 +20,6 @@ searchBtn.addEventListener('click', (e)=>{
     }
     else {
         //Clear Profile
+        ui.clearProfile();
     }
 });
