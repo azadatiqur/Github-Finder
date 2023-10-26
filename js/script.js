@@ -16,9 +16,23 @@ searchBtn.addEventListener('click', (e)=>{
                 }
                 else {
                     // Show Profile
-                    ui.showProfile(data);
+                    if(data.public_repos>0) {
+                        ui.loading();
+                        fetch(data.repos_url)
+                            .then(result => result.json())
+                            .then(repos_data => {
+                                //console.log(repos_data);        
+        
+                                ui.showProfile(data);
+                                ui.showRepos(repos_data);
+                                
+                            });
+                    }
+                    else {
+                        ui.showProfile(data);
+                    }
                 }
-            })
+            });
     }
     else {
         //Clear Profile

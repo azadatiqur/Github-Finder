@@ -3,6 +3,11 @@ class UI {
         this.profile = document.querySelector('#profile');
     }   
 
+    loading() {
+      this.clearAlert();
+      this.profile.innerHTML = "<h3>Loading... Please wait</h3>";
+    }
+
     showProfile(user) {
       this.clearAlert();
       this.profile.innerHTML = `
@@ -12,7 +17,7 @@ class UI {
             <img class="img-fluid mb-2" src="${user.avatar_url}">
             <a href="${user.html_url}" target="_blank" class="btn btn-primary btn-block mb-4">View Profile</a>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-9 before-repos">
             <span class="badge badge-primary">Public Repos: ${user.public_repos}</span>
             <span class="badge badge-secondary">Public Gists: ${user.public_gists}</span>
             <span class="badge badge-success">Followers: ${user.followers}</span>
@@ -28,6 +33,21 @@ class UI {
         </div>
       </div>
         `;
+    }
+
+    showRepos(repos_data) {
+      let div = document.querySelector('.before-repos');
+      let header = document.createElement('h2');
+      header.appendChild(document.createTextNode('Repos:'));
+      div.appendChild(header);
+      let repos_div = document.createElement('div');
+      let repos_ui = "<ol>";
+      repos_data.forEach(repo => {
+        repos_ui += `<li>${repo.name}</li>`; 
+      })
+      repos_ui += "</ol>";
+      repos_div.innerHTML = repos_ui;
+      div.appendChild(repos_div);
     }
 
     clearProfile() {
